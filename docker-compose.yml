@@ -1,19 +1,19 @@
-mongodb:
+mongodb-rpibroker:
   image: mongo
   ports: 
-    - "3500:27017"
+    - "3502:27017"
   volumes:
     - ./data:/data/db
   command: mongod --smallfiles --logpath=/dev/null # -- quiet
   restart: always
     
-connextcms:
+connextcms-rpibroker:
   build: .
   dockerfile: Dockerfile
   links:
-    - mongodb
+    - mongodb-rpibroker
   ports:
-    - "3000:3000"
+    - "3002:3000"
     - "8080:8080"
   volumes:
     - ./theme:/home/connextcms/theme
